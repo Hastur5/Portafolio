@@ -1,28 +1,9 @@
+import { response } from "express";
 import { sequelize } from "../database/database.js";
 import modelosInit from "../models/init-models.js";
 import { Op } from "sequelize";
 
 const models = modelosInit(sequelize);
-
-// export const getMultimedia = async (req, res) => {
-//   let response
-//   try {
-//     response = await models.multimedias.findAll()
-//   } catch (e) {
-//     res.status(500).json({ error: e.message })
-//   }
-//   res.status(200).json(response)
-// }
-
-// export const getMultimedia = async (req, res) => {
-//     let response
-//     try {
-//       response = await models.multimedias.findAll({ include: 'audios' })
-//     } catch (e) {
-//       res.status(500).json({ error: e.message })
-//     }
-//     res.status(200).json(response)
-//   }
 
 export const getMultimedia = async (req, res) => {
   let response;
@@ -48,38 +29,33 @@ export const addMultimedia = async (req, res) => {
   let cuerpo = req.body;
 
   if ("album" in cuerpo && !("seasons" in cuerpo) && !("chapters" in cuerpo)) {
-    addAudio(cuerpo);
-    console.log("se viene una song!!!");
+    let aux_res = await addAudio(cuerpo, models.songs);
+    res.status(200).json(aux_res);
+    return;
   } else if (
     "seasons" in cuerpo &&
     !("album" in cuerpo) &&
     !("chapters" in cuerpo)
   ) {
-    console.log("podcast");
+    let aux_res = await addAudio(cuerpo, models.podcasts);
+    res.status(200).json(aux_res);
+    return;
   } else if (
     "chapters" in cuerpo &&
     !("album" in cuerpo) &&
     !("seasons" in cuerpo)
   ) {
-    console.log("Esto es un audio libro");
+    let aux_res = await addAudio(cuerpo, models.audio_books);
+    res.status(200).json(aux_res);
+    return;
   } else {
     res.status(500).json({ error: "Tu petición es inválida." });
   }
-
-  // console.log(cuerpo.hasOwnProperty('duration')) Arrojan true si el elemento está en el cuerpo de lo que se pide.
-  // console.log('duration' in cuerpo)
-
-  // let response
-  // try {
-  //
-  // } catch (e) {
-  //   res.status(500).json({ error: e.message })
-  // }
   res.status(200).json(cuerpo);
   console.log();
 };
 
-const addAudio = async (cuerpo) => {
+const addAudio = async (cuerpo, modelo) => {
   let response;
   let validation;
   let publisher_id;
@@ -103,6 +79,7 @@ const addAudio = async (cuerpo) => {
       publisher_id = response.dataValues.id_publisher;
     } else {
       publisher_id = validation[0].dataValues.id_publisher;
+      console.log("id: " + publisher_id + " ya estaba este publisher");
     }
 
     validation = await models.creators.findAll({
@@ -122,20 +99,23 @@ const addAudio = async (cuerpo) => {
       creator_id = response.dataValues.id_creator;
     } else {
       creator_id = validation[0].dataValues.id_creator;
+      console.log("id: " + creator_id + " ya estaba ese creator");
     }
 
     validation = await models.songs_performers.findAll({
       where: { name_performer },
     });
     if (validation.length === 0) {
-      response = await models.songs_performers.create({
+      response = await modelo.create({
         name_performer: name_performer.trim(),
         country_performer: country_performer.trim(),
         bio_performer: bio_performer.trim(),
       });
       performer_id = response.dataValues.id_performer;
+      console.log(performer_id);
     } else {
       performer_id = validation[0].dataValues.id_performer;
+      console.log("id: " + performer_id + " ya estaba ese performer");
     }
 
     validation = await models.multimedias.findAll({
@@ -159,8 +139,7 @@ const addAudio = async (cuerpo) => {
       console.log(multimedia_id);
     } else {
       multimedia_id = validation[0].dataValues.id_multimedia;
-      console.log(multimedia_id);
-      console.log("Ya estaba, bro");
+      console.log("id: " + multimedia_id + " el archivo ya estaba");
     }
 
     validation = await models.file_types.findAll({
@@ -174,7 +153,7 @@ const addAudio = async (cuerpo) => {
       console.log(file_type_id);
     } else {
       file_type_id = validation[0].dataValues.id_file_type;
-      console.log(file_type_id);
+      console.log("ACC");
     }
 
     validation = await models.audios.findAll({
@@ -192,6 +171,7 @@ const addAudio = async (cuerpo) => {
       console.log(audio_id);
     } else {
       audio_id = validation[0].dataValues.id_audio;
+      console.log("id:" + audio_id + " ya estaba");
     }
 
     validation = await models.songs.findAll({
@@ -202,7 +182,7 @@ const addAudio = async (cuerpo) => {
       },
     });
     if (validation.length === 0) {
-      response = await models.songs.create({
+      response = await modelo.create({
         album: cuerpo.album.trim(),
         duration: cuerpo.duration.trim(),
         audio_id,
@@ -212,14 +192,13 @@ const addAudio = async (cuerpo) => {
       console.log(song_id);
     } else {
       song_id = validation[0].dataValues.id_song;
-      console.log(song_id);
+      console.log("id: " + song_id + " esa song ya está");
     }
+    return { Estatus: "Registro exitoso" };
   } catch (e) {
     console.log(e.message);
-    // validation.status(500).json({ error: e.message });
+    return { error: e.message };
   }
-  // res.status(200).json(cuerpo)
-  console.log("Esto es una buena song");
 };
 
-console.log("gola");
+console.log("PROBANDO");
