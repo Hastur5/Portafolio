@@ -54,7 +54,7 @@ input {
   margin-top: 560px;
 }
 
-.encriptador {
+.encriptar {
   width: 300px;
   height: 67px;
   background: #0a3871;
@@ -65,7 +65,7 @@ input {
   order: 0;
   flex-grow: 0;
 }
-.desencriptador {
+.desencriptar {
   width: 300px;
   height: 67px;
   border-radius: 24px;
@@ -114,4 +114,8 @@ h6 {
   font-family: "Inter";
   font-style: normal;
   font-size: 20px;
+}
+
+.hide{
+  display: none;
 }
