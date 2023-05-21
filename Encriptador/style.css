@@ -1,0 +1,117 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  width: 100%;
+  height: 100vh;
+  background: #f5f5f5;
+}
+input {
+  position: absolute;
+  width: 577px;
+  height: 48px;
+  margin-left: 240px;
+  margin-top: 168px;
+
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 200;
+  font-size: 25px;
+  line-height: 150%;
+  color: #0a3871;
+}
+
+.button {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 24px;
+
+  position: absolute;
+  width: 680px;
+  height: 67px;
+  margin-left: 101px;
+  margin-top: 585px;
+}
+
+#instrucciones {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 24px;
+  gap: 8px;
+
+  width: 328px;
+  height: 67px;
+
+  position: absolute;
+  width: 229px;
+  height: 18px;
+  margin-left: 99px;
+  margin-top: 560px;
+}
+
+.encriptador {
+  width: 300px;
+  height: 67px;
+  background: #0a3871;
+  color: #d8dfe8;
+  border-radius: 24px;
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+.desencriptador {
+  width: 300px;
+  height: 67px;
+  border-radius: 24px;
+
+  background: #d8dfe8;
+
+  border: 1px solid #0a3871;
+  border-radius: 24px;
+
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+.caja {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 400px;
+  height: 650px;
+  margin-left: 1000px;
+  margin-top: 40px;
+
+  background: #ffffff;
+
+  box-shadow: 0px 24px 32px -8px rgba(0, 0, 0, 0.08);
+  border-radius: 32px;
+}
+
+img {
+  width: 60%px;
+  height: 80%px;
+  margin-left: 30px;
+  margin-top: 150px;
+}
+.texto {
+  justify-content: center;
+}
+h6 {
+  font-family: "Inter";
+  font-style: normal;
+  font-size: 25px;
+}
+
+.mensaje {
+  font-family: "Inter";
+  font-style: normal;
+  font-size: 20px;
+}
