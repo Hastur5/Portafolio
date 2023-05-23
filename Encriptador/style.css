@@ -116,6 +116,21 @@ h6 {
   font-size: 20px;
 }
 
-.hide{
+.hide {
   display: none;
+}
+
+.card {
+  margin-top: 200px;
+}
+.resultado {
+  font-size: 30px;
+}
+.button-copiar{
+  width: 280px;
+  height: 67px;
+  margin-top: 300px;
+  background: grey;
+  color: black;
+  border-radius: 24px;
 }
