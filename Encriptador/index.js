@@ -54,7 +54,7 @@ let mostrarTextoDes = () => {
   for (let i = 0; i < input.value.length; i++) {
     if (input.value[i] === "a" && input.value[i + 1] === "i") {
       nuevoTexto += "a";
-      i++; // Avanza un índice adicional para saltar la siguiente letra "i"
+      i++;
     } else if (
       input.value[i] === "e" &&
       input.value[i + 1] === "n" &&
@@ -63,7 +63,7 @@ let mostrarTextoDes = () => {
       input.value[i + 4] === "r"
     ) {
       nuevoTexto += "e";
-      i += 4; // Avanza cuatro índices adicionales para saltar las letras restantes de "enter"
+      i += 4;
     } else if (
       input.value[i] === "i" &&
       input.value[i + 1] === "m" &&
@@ -71,7 +71,7 @@ let mostrarTextoDes = () => {
       input.value[i + 3] === "s"
     ) {
       nuevoTexto += "i";
-      i += 3; // Avanza tres índices adicionales para saltar las letras restantes de "imes"
+      i += 3; 
     } else if (
       input.value[i] === "o" &&
       input.value[i + 1] === "b" &&
@@ -79,7 +79,7 @@ let mostrarTextoDes = () => {
       input.value[i + 3] === "r"
     ) {
       nuevoTexto += "o";
-      i += 3; // Avanza tres índices adicionales para saltar las letras restantes de "ober"
+      i += 3;
     } else if (
       input.value[i] === "u" &&
       input.value[i + 1] === "f" &&
@@ -87,7 +87,7 @@ let mostrarTextoDes = () => {
       input.value[i + 3] === "t"
     ) {
       nuevoTexto += "u";
-      i += 3; // Avanza tres índices adicionales para saltar las letras restantes de "ufat"
+      i += 3;
     } else {
       nuevoTexto += input.value[i];
     }
