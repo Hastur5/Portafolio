@@ -2,6 +2,8 @@ const input = document.querySelector("input");
 const caja = document.querySelector(".caja");
 const imagen = document.querySelector("img");
 const texto = document.querySelector(".texto");
+let mayusculas = /[A - Z]/;
+let acentos = / [áéíóúÁÉÍÓÚ]/;
 let nuevoTexto = "";
 const encriptar = document
   .querySelector(".encriptar")
@@ -22,7 +24,16 @@ const desencriptar = document
 let mostrarTexto = () => {
   eliminarTextoAnterior();
   for (let i = 0; i < input.value.length; i++) {
-    if (input.value[i] === "a") {
+    if (/[A-ZáéíóúÁÉÍÓÚ ]/.test(input.value[i])) {
+      let texto = document.createElement("h3");
+      texto.innerHTML = `
+      <div class="card">
+        <p class="resultado"> Ingresa un texto válido para encriptar </p>
+      </div>
+      `;
+      caja.append(texto);
+      return; // cancela el for
+    } else if (input.value[i] === "a") {
       nuevoTexto += "ai";
     } else if (input.value[i] === "e") {
       nuevoTexto += "enter";
@@ -39,20 +50,25 @@ let mostrarTexto = () => {
   let texto = document.createElement("h3");
   texto.innerHTML = `<div class="card">
   <p class="resultado"> ${nuevoTexto}</p>
-  <button class="copiar">Copiar texto<button/>
+  <button class="btn-copiar">Copiar texto<button/>
   </div>`;
   caja.append(texto);
-  const copiarBoton = texto.querySelector(".copiar");
-  copiarBoton.addEventListener("click", (evt) => {
-    console.log("click");
-  });
   nuevoTexto = "";
 };
 
 let mostrarTextoDes = () => {
   eliminarTextoAnterior();
   for (let i = 0; i < input.value.length; i++) {
-    if (input.value[i] === "a" && input.value[i + 1] === "i") {
+    if (/[A-ZáéíóúÁÉÍÓÚ ]/.test(input.value[i])) {
+      let texto = document.createElement("h3");
+      texto.innerHTML = `
+      <div class="card">
+        <p class="resultado"> Ingresa un texto válido para encriptar </p>
+      </div>
+      `;
+      caja.append(texto);
+      return;
+    } else if (input.value[i] === "a" && input.value[i + 1] === "i") {
       nuevoTexto += "a";
       i++;
     } else if (
@@ -71,7 +87,7 @@ let mostrarTextoDes = () => {
       input.value[i + 3] === "s"
     ) {
       nuevoTexto += "i";
-      i += 3; 
+      i += 3;
     } else if (
       input.value[i] === "o" &&
       input.value[i + 1] === "b" &&
@@ -110,4 +126,15 @@ let eliminarTextoAnterior = () => {
   if (resultadoAnterior) {
     caja.removeChild(resultadoAnterior);
   }
+};
+
+document.querySelector(".copiar").onclick = function () {
+  let copiar = document.querySelector(".resultado").value;
+  navigator.clipboard.writeText(texto);
+
+  copiar.style.display = "block";
+
+  setTimeout(function () {
+    copiar.style.display = "none";
+  }, 2000);
 };

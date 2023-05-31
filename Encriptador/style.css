@@ -38,20 +38,12 @@ input {
 }
 
 #instrucciones {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  padding: 24px;
-  gap: 8px;
-
+  color: black;
   width: 328px;
   height: 67px;
-
   position: absolute;
-  width: 229px;
-  height: 18px;
-  margin-left: 99px;
-  margin-top: 560px;
+  margin-left: 120px;
+  margin-top: 540px;
 }
 
 .encriptar {
@@ -125,12 +117,26 @@ h6 {
 }
 .resultado {
   font-size: 30px;
+  font-family: "Inter";
+  font-style: normal;
 }
-.copiar{
+.btn-copiar {
   width: 280px;
   height: 67px;
   margin-top: 300px;
   background: grey;
   color: black;
   border-radius: 24px;
+}
+.copiar {
+  display: none;
+  background-color: #4caf50;
+  color: white;
+  padding: 10px;
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 5px;
+  z-index: 9999;
 }
