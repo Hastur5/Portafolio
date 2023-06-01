@@ -2,6 +2,8 @@ const input = document.querySelector("input");
 const caja = document.querySelector(".caja");
 const imagen = document.querySelector("img");
 const texto = document.querySelector(".texto");
+const frase = input.value.trim();
+const palabras = frase.split(" ");
 let mayusculas = /[A - Z]/;
 let acentos = / [áéíóúÁÉÍÓÚ]/;
 let nuevoTexto = "";
@@ -24,7 +26,8 @@ const desencriptar = document
 let mostrarTexto = () => {
   eliminarTextoAnterior();
   for (let i = 0; i < input.value.length; i++) {
-    if (/[A-ZáéíóúÁÉÍÓÚ ]/.test(input.value[i])) {
+    const palabra = palabras[i];
+    if (/[A-ZáéíóúÁÉÍÓÚ ]/.test(palabra)) {
       let texto = document.createElement("h3");
       texto.innerHTML = `
       <div class="card">
@@ -73,7 +76,8 @@ let mostrarTexto = () => {
 let mostrarTextoDes = () => {
   eliminarTextoAnterior();
   for (let i = 0; i < input.value.length; i++) {
-    if (/[A-ZáéíóúÁÉÍÓÚ ]/.test(input.value[i])) {
+    const palabra = palabras[i];
+    if (/[A-ZáéíóúÁÉÍÓÚ ]/.test(palabra)) {
       let texto = document.createElement("h3");
       texto.innerHTML = `
       <div class="card">
