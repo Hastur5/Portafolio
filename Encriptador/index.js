@@ -50,9 +50,23 @@ let mostrarTexto = () => {
   let texto = document.createElement("h3");
   texto.innerHTML = `<div class="card">
   <p class="resultado"> ${nuevoTexto}</p>
-  <button class="btn-copiar">Copiar texto<button/>
+  <button class="copiar">Copiar texto<button/>
   </div>`;
   caja.append(texto);
+
+  const copiar = document
+    .querySelector(".copiar")
+    .addEventListener("click", () => {
+      const resultadoElemento = document.querySelector(".resultado");
+      const textoCopiado = resultadoElemento.textContent.trim();
+      const elemento = document.createElement("textarea");
+      elemento.value = textoCopiado;
+      document.body.appendChild(elemento);
+      elemento.select();
+      document.execCommand("copy");
+      document.body.removeChild(elemento);
+      console.log(textoCopiado);
+    });
   nuevoTexto = "";
 };
 
@@ -114,10 +128,19 @@ let mostrarTextoDes = () => {
   <button class="copiar">Copiar texto<button/>
   </div>`;
   caja.append(texto);
-  const copiarBoton = texto.querySelector(".copiar");
-  copiarBoton.addEventListener("click", (evt) => {
-    console.log("click");
-  });
+  const copiar = document
+    .querySelector(".copiar")
+    .addEventListener("click", () => {
+      const resultado = document.querySelector(".resultado");
+      const textoCopiado = resultado.textContent;
+      const elemento = document.createElement("textarea");
+      elemento.value = textoCopiado;
+      document.body.appendChild(elemento);
+      elemento.select();
+      document.execCommand("copy");
+      document.body.removeChild(elemento);
+      console.log(textoCopiado);
+    });
   nuevoTexto = "";
 };
 
@@ -126,15 +149,4 @@ let eliminarTextoAnterior = () => {
   if (resultadoAnterior) {
     caja.removeChild(resultadoAnterior);
   }
-};
-
-document.querySelector(".copiar").onclick = function () {
-  let copiar = document.querySelector(".resultado").value;
-  navigator.clipboard.writeText(texto);
-
-  copiar.style.display = "block";
-
-  setTimeout(function () {
-    copiar.style.display = "none";
-  }, 2000);
 };
