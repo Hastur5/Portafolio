@@ -38,27 +38,26 @@ function leerDatosCurso(curso) {
     cantidad: 1,
   };
   articulosCarrito = [...articulosCarrito, infoCurso];
-
-  console.log(articulosCarrito);
 }
 
 function carritoHTML() {
   limpiarHTML();
 
   articulosCarrito.forEach((curso) => {
+    const { imagen, titulo, precio, cantidad, id } = curso;
     const row = document.createElement("tr");
     row.innerHTML = `
     <td>
-        <img src = "${curso.imagen}" width="100">
+        <img src = "${imagen}" width="100">
     </td>
     <td>
-        ${curso.titulo}
+        ${titulo}
     </td>
     <td>
-        ${curso.precio}
+        ${precio}
     </td>
     <td>
-        ${curso.cantidad}
+        ${cantidad}
     </td>
     <td>
         <a href="#" class="borrar-curso" data-id="${curso.id}"> X </a>
