@@ -1,6 +1,7 @@
 import express from "express";
 import conectarDB from "./config/db.js";
 import dotenv from "dotenv";
+import veterinarioRoutes from "./routes/veterinario.routes.js";
 
 const app = express();
 
