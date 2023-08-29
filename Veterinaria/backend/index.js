@@ -2,7 +2,6 @@ import express from "express";
 import conectarDB from "./config/db.js";
 import dotenv from "dotenv";
 
-
 const app = express();
 
 dotenv.config();
@@ -12,6 +11,8 @@ app.use("/", (req, res) => {
   res.send("Holis");
 });
 
-app.listen(4000, () => {
-  console.log("El servidor está en el puerto 4000");
+const PORT = process.env.PORT || 4000;
+
+app.listen(PORT, () => {
+  console.log(`El servidor está en el puerto ${PORT}`);
 });
