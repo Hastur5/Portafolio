@@ -8,9 +8,7 @@ const app = express();
 dotenv.config();
 conectarDB();
 
-app.use("/", (req, res) => {
-  res.send("Holis");
-});
+app.use("/api/veterinarios", veterinarioRoutes);
 
 const PORT = process.env.PORT || 4000;
 
