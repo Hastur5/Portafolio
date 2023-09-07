@@ -1,16 +1,11 @@
-
-
-
-
 const registrar = (req, res) => {
-  res.send("Hola Carmen");
+  const { nombre, email, password } = req.body;
+
+  res.json({ msg: "Registrando a Carmen..." });
 };
 
 const perfil = (req, res) => {
-  res.send("Desde Login");
+  res.json({ msg: "Mostrando perfil" });
 };
 
-export{
-    registrar,
-    perfil
-}
+export { registrar, perfil };
