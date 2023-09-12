@@ -2,6 +2,9 @@ import Veterinario from "../models/veterinarioModel.js";
 
 const registrar = async (req, res) => {
   // const { nombre, email, password } = req.body;
+
+  // Prevenir usuarios duplicados.
+
   try {
     // Guardar Vet
     const veterinario = new Veterinario(req.body);
